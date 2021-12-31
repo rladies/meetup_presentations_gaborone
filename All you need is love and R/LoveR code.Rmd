@@ -1,0 +1,500 @@
+---
+title: "All you need is love..."
+subtitle: "...and R!"
+author: 'Michela Cameletti <br><br> Professor of Statistics at <br><a href="https://www.unibg.it/">Department of Economics, University of Bergamo, Italy </a> <br><br><a href="mailto:michela.cameletti@unibg.it"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; michela.cameletti@unibg.it</a><br>'
+date: "R-ladies Gaborone <br> 2021/12/11"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+
+---
+layout: true
+  
+---
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+#knitr::opts_chunk$set(echo = FALSE, eval = FALSE, message = FALSE, dpi = 72)
+options(fig.retina = 3, warning = FALSE, message = FALSE, htmltools.dir.version = FALSE)
+library(icons)     ## for FontAwesome icons (ozunconf17 project!)
+library(emo)       ## for emoji, obvs (github.com/hadley/emo)
+library(tidyverse) ## for data wrangling
+library(fontawesome)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "#125972", ## picked to coordinate with rOpenSci logo
+  code_highlight_color = "#c0e8f5",
+  link_color = "#197b9e",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono")
+)
+```
+
+class: 
+# Outline
+.pull-left[
+### 1. Who I am
+
+### 2. My research with `r fa("r-project", fill = "steelblue")` 
+
+### 3. My teaching with `r fa("r-project", fill = "steelblue")` 
+]
+.pull-right[
+<!-- ![questo è il logo](./img/love2.jpeg) -->
+```{r out.width = '70%',echo=FALSE}
+knitr::include_graphics("./img/love2.jpeg") 
+```
+]
+
+---
+class: inverse, center, middle
+# 1. Who I am
+
+---
+# My background
+
+.pull-left[
+- 2001: MSc in **Statistics, Demography and Social Sciences**,<br> [University of Milano-Bicocca](www.unimib.it) (Italy).
+
+- 2007: Ph.D. in **Statistics**, [University of Milano-Bicocca](www.unimib.it)  (Italy).
+
+]
+
+.pull-right[
+```{r,  out.width = '200px', out.height="300px"}
+library(leaflet)
+
+m = leaflet() %>% addTiles() %>%  
+  addMarkers(lat=45.518, lng=9.21) %>% 
+  setView(lat=45.518, lng=9.21, zoom = 5) 
+m
+```
+]
+
+---
+
+# Current status
+
+.pull-left[
+```{r out.width = '70%',echo=FALSE}
+knitr::include_graphics("./img/logo.png") 
+```
+
+
+- Since 2018: Associate Professor of **Statistics**, [University of Bergamo](www.unibg.it), Italy.
+
+- 2008-2018: Assistant Professor of **Statistics**, [University of Bergamo](www.unibg.it), Italy.
+]
+
+
+.pull-right[
+
+```{r, echo=F}
+awesome <- makeAwesomeIcon(
+  icon = "tv",
+  markerColor = "green",
+  library = "fa",
+  squareMarker = T
+)
+```
+
+```{r,  out.width = '200px', out.height="300px"}
+library(leaflet)
+
+m %>% 
+  addAwesomeMarkers(lat=45.687, lng=9.661,
+                    icon = awesome)
+```
+]
+
+
+---
+
+# My first time with `r fa("r-project", fill = "steelblue")` 
+
+.pull-left[
+
+- It was a loooong time ago (spring 2003) during my PhD
+
+- Lectures with **Prof. S.M. Iacus** (member of the [R Core Team](https://www.r-project.org/contributors.html) from 1999 to 2014)
+
+- No `RStudio`, `tidyverse`, `ggplot`, ... `r emo::ji("scared")`
+
+```{r, echo=FALSE}
+knitr::include_graphics("./img/Rbase.png") 
+```
+]
+
+.pull-right[
+```{r, echo=FALSE}
+knitr::include_graphics("./img/myfirstR.png") 
+```
+]
+
+---
+# My PhD project
+.pull-left[
+- Thesis on **Spatio-temporal
+models for environmental data**
+with a specific focus on air pollution.
+
+- `R` package `Stem`: **Spatio-temporal models in `R`**: estimation of the parameters of a spatio-temporal model using the EM algorithm, estimation of the parameter standard errors using a spatio-temporal parametric bootstrap, spatial mapping.
+
+- See [https://CRAN.R-project.org/package=Stem](https://CRAN.R-project.org/package=Stem)
+]
+
+.pull-right[
+Particulate matter concentrations (log scale) in Piemonte region, Italy.
+```{r, echo=FALSE}
+knitr::include_graphics("./img/uhatlight.png") 
+```
+]
+
+---
+# Functions in the `Stem` package
+
+
+```{r, out.width="80%", echo=FALSE}
+knitr::include_graphics("./img/stem.png") 
+```
+
+
+
+---
+# N. of downloads of the `Stem` package
+.pull-left[
+```{r, warning=FALSE,message=FALSE}
+library(cranlogs)
+library(tidyverse)
+library(lubridate)
+
+downloads <- cran_downloads(packages="Stem",
+                      from = "2012-01-01",
+                      to = Sys.Date()-1)
+sum(downloads$count)
+downloads$Year = year(downloads$date)
+```
+]
+
+.pull-right[
+```{r, out.width = '300px', out.height="300px"}
+downloads %>% 
+  group_by(Year) %>% 
+  summarize(tot = sum(count)) %>% 
+  ggplot() +
+  geom_col(aes(Year,tot)) +
+  ylab("Total number of downloads")
+```
+]
+
+---
+class: inverse, center, middle
+# 2. My research with `r fa("r-project", fill = "steelblue")`
+
+---
+
+# My research topics
+.pull-left[
+- **Spatio-temporal models** for environmental phenomena
+
+- **Air pollution** modeling, prediction and mapping
+
+- **Exposure** estimation and health outcome modeling
+
+- **Computational statistics**, e.g. [`R-INLA`](https://www.r-inla.org/home)
+
+- Other topics: epidemiology, ecology, ...
+]
+
+.pull-right[
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("./img/wordcloud.png") 
+```
+]
+
+---
+# My Scopus profile [(here)](https://www.scopus.com/authid/detail.uri?authorId=16303191200)
+.pull-left[
+```{r}
+library(rscopus)
+set_api_key("0d99d8386ac6099765a080d41f388cb7") 
+mypubl = author_df(au_id = "16303191200",
+                   verbose = FALSE)
+mypubl$Year = year(mypubl$`prism:coverDate`)
+```
+]
+.pull-right[
+```{r}
+mypubl %>% 
+  count(Year = mypubl$Year) %>% 
+  ggplot() +
+  geom_col(aes(Year,n)) +
+  ylab("Total number of SCOPUS publications")
+```
+]
+
+---
+# My Scopus Wordcloud
+
+.pull-left[
+```{r}
+library(wordcloud)
+library(RColorBrewer)
+library(wordcloud2)
+library(tm)
+
+# Abstract texts
+text = mypubl$`dc:description`
+# Create a corpus  
+docs = Corpus(VectorSource(text))
+```
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+# Cleaning
+docs = docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("english"))
+docs <- tm_map(docs, removeWords, c("can","crc","use","also","one","used"))
+```
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+# Document-term-matrix
+dtm = TermDocumentMatrix(docs) 
+matrix = as.matrix(dtm) 
+words = sort(rowSums(matrix),decreasing=TRUE) 
+df = data.frame(word = names(words),freq=words)
+```
+]
+
+.pull-right[
+```{r}
+wordcloud(words = df$word,
+          freq = df$freq,
+          min.freq = 10,
+          max.words = 200,
+          random.order = FALSE,
+          rot.per = 0.5,
+          colors = brewer.pal(5, "Set1"))
+```
+]
+
+
+---
+# (some of) The packages I use the most
+- ###Data manipulation and plotting:
+    - standard `R` code and objects
+    - `tidyverse` collection
+ 
+- ### Spatial objects manipulation and mapping:
+    - `rgdal`, `spdep`, `sp`, `sf`, `lattice`, `fields`, `maptools`, `leaflet`, ...
+    
+- ### Modelling:
+    - `R-INLA`, `rpart`, ...
+    
+- ### Parallel computing:
+    - `parallel`, `snow`, ...
+
+
+---
+# Not sure what you need? `r emo::ji("confused")`
+
+<iframe width="640" height="390" src="https://cran.r-project.org/web/views/" frameborder="0" allowfullscreen></iframe>
+
+
+---
+# Writing my own functions
+```{r, echo=FALSE, out.width="40%"}
+knitr::include_graphics("./img/excess.png") 
+```
+[Link to the paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0240286) 
+
+```{r}
+# Functions for preparing the data
+
+make.data = function(macro.regions = macro.regions, area, Sex) {
+  
+  data = macro.regions[[area]] %>%
+    filter(Anno<max(Anno),sex==Sex) %>%
+    mutate(SIGLA=droplevels(SIGLA))
+  data$ID1 = (data %>% mutate(IDarea=group_indices(.,ID_Ita)))$IDarea
+  
+  data = data %>%
+    mutate(ID_prov=group_indices(.,SIGLA)) %>%
+    select(-c(nord,centro,sud)) %>%
+    select(sex,everything())
+  
+  data = data %>%
+    mutate(IDtemp=as.numeric(as.character(IDtemp)))
+  return(data)
+}
+```
+
+
+---
+# Interactive research communication 
+### Shiny app 1
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("./img/arxive.png") 
+```
+
+- [Shiny app link](https://guidoispra.shinyapps.io/pulvirus_no2/)
+- [Paper link](https://arxiv.org/abs/2110.15020)
+
+
+
+---
+# Interactive research communication 
+### Shiny app 2
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("./img/medarxive.png") 
+```
+
+- [Shiny app link](http://atlasmortalidad.uclm.es/excess/)
+- [Paper link](https://www.medrxiv.org/content/10.1101/2021.10.18.21264686v1)
+
+
+---
+
+class: inverse, center, middle
+# 3. My teaching with `r fa("r-project", fill = "steelblue")`
+---
+# The classes I teach
+
+### Department of Economics 
+- From 2018 *Coding for Data Science*
+- From 2018 *Machine Learning for Economics*
+- From 2020 *AI and Machine Learning for Finance*
+
+### Department of Management
+- From 2011 *Probability and Statistics for Business and Finance* (in English and in Italian)
+
+
+---
+# My teaching approach
+.pull-left[
+- **How?** Every week:
+    - 2 theory lectures 
+    - 1 lab with `r simple_icons$rstudio``Studio` (step by step coding)
+
+
+- **What?** I teach:
+    - how to use `R` built-in functions for data science and analysis (no advanced programming)
+    - [`RMarkdown`](https://rmarkdown.rstudio.com/) for data science communication (and the exam!)
+    
+
+- **Materials?** I use `RMarkdown` +  [`bookdown`](https://github.com/rstudio/bookdown) package to prepare labs' notes and exam texts. ]
+
+.pull-right[
+```{r, out.width = '100%', echo=FALSE}
+knitr::include_graphics("./img/rmarkdown.png") 
+```
+```{r, out.width = '50%', echo=FALSE}
+knitr::include_graphics("./img/bookdown.png") 
+```
+]
+
+
+---
+
+# Labs' notes example
+
+See the labs' notes for the *Machine Learning for Economics* course [here](https://bookdown.org/michela_cameletti/rlabnotes_mlfe2021/).
+
+.pull-left[
+**`index.Rmd`**
+```{r, out.width = '900%', echo=FALSE}
+knitr::include_graphics("./img/indexbookdown.png") 
+```
+
+**`01-RLab1.Rmd`**
+```{r, out.width = '900%', echo=FALSE}
+knitr::include_graphics("./img/bookdownexample.png")
+```
+
+]
+
+.pull-right[
+```{r, out.width = '100%', echo=FALSE}
+knitr::include_graphics("./img/labnotes.png") 
+```
+]
+---
+# Exam example
+
+```{r,out.width = '60%', echo=FALSE}
+knitr::include_graphics("./img/examexampleRmd.png")
+```
+
+
+```{r, out.width = '60%', echo=FALSE}
+knitr::include_graphics("./img/examexamplehtml.png") 
+```
+---
+
+# To summarize
+
+- I'm definitely a `r fa("r-project", fill = "steelblue")` lover 
+`r feather_icons$heart` `r fontawesome$solid$heart`
+
+### Pros:
+- Open source
+- It can be used for any kind of data science project and analysis (reproducibility!)
+- The new tools (e.g. `RMarkdown`) makes `R` even more powerful
+- Wide community of `r fa("r-project", fill = "steelblue")` users
+
+### Cons:
+- Error messages are sometimes misleading
+- Slowness? Memory management?
+- Steep learning curve
+
+
+---
+class: inverse, center, middle
+# 
+
+
+```{r, out.width = '60%', echo=FALSE}
+knitr::include_graphics("./img/learningcurve.jpg") 
+```
+
+<br>
+[Link](https://martinctc.github.io/blog/two-styles-of-learning-r/)
+
+
+---
+
+# Thank you!
+
+.pull-left[
+## Contacts
+
+### `r feather_icons$link` [My institutional webpage](https://www.unibg.it/ugov/person/2441)
+### `r academicons$orcid` [My ORCID page](http://orcid.org/0000-0002-6502-7779)
+### `r simple_icons$twitter` [@micameletti](https://twitter.com/micameletti)
+
+<br><br>
+
+]
+
+.pull-right[
+```{r, eval = TRUE, echo=F}
+knitr::include_graphics("img/thanks.gif")
+```
+]
+
+Slides created via the `R` package [**xaringan**](https://github.com/yihui/xaringan).
+
+
+
+
