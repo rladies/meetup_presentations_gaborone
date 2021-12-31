@@ -1,3 +1,5 @@
+The Gaborone chapter of R-Ladies Global promotes diversity in the R community in Gaborone, Botswana whether new, aspiring or experienced users can contribute and learn in the data science community.
+
 # meetup_presentations_gaborone
 Meetup presentations and material from R-Ladies Gaborone, Botswana
 
