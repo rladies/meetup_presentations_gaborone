@@ -1,4 +1,5 @@
 #packages and code to be used in the R packages for data cleaning workshop_25/01/2022
+#written by Simisani Ndaba
 
 install.packages("janitor")
 library(janitor)
