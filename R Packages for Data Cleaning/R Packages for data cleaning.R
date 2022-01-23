@@ -20,3 +20,6 @@ library(tidyverse)
 
 #print an optimised amount of the results from the function
 option(maxprint=1000000)
+
+#read the csv using the readr package/ getwd(),use wd depending on wd
+HP <- read_csv("C:/Users/Milikani/Documents/NYC_"
