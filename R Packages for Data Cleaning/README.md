@@ -1,0 +1,9 @@
+R-Ladies Brisbane hosts an event for R-Ladies Gaborone on the introduction to R packages for data cleaning, such as Naniar, Janitor and more with Simisani Ndaba as speaker . 
+
+Simisani Ndaba has a history of working in the higher education industry having been working at the Department of Computer Science at the 
+University of Botswana as a Teaching Assistant since 2016. She graduated with her Masters of Science in Computer Information Systems
+where her research work was based on Information Retrieval in Authorship Identification using authors’ writing styles PAN at CLEF. 
+PAN is a series of scientific events and shared tasks on digital text forensics and stylometry. 
+Prior to that, she worked as a Business Analyst at the Gauteng Department of Education working on data management and business intelligence in South Africa. 
+She also holds a Bachelor’s degree in Business Information Systems and a Post Graduate Diploma in Education, a trainer qualification in October 2021. 
+She is the founder and co-organiser of R-Ladies Gaborone is an assistant in Health Informatics Africa
