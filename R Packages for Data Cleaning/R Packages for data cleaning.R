@@ -48,7 +48,7 @@ any_miss(HP)  #TRUE or FALSE
 miss_var_summary(HP)   #frequency of missing values using lollipop plots
 gg_miss_var(HP)     # visual relationship of  missing values 
 gg_miss_upset(HP,order.by="freq")  
-ggplot(HP,aes(x=YearBuilt,y=YearRemodAdd))_geom_miss_point()+facet_wrap(~calculated_host_istings_count)+theme_dark()       #categorical variable
+ggplot(HP,aes(x=YearBuilt,y=YearRemodAdd))+geom_miss_point()+facet_wrap(~calculated_host_istings_count)+theme_dark()       #categorical variable
 HP <- impute_mean_if(HP,.predicate=is.double)  #impute(replace) NA with impute mean on double values
 HP <- impute_mean_if(HP,.predicate=is.integer)  #impute(replace) NA with impute mean on integer values           
                    
