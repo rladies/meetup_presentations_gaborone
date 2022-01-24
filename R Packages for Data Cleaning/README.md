@@ -1,4 +1,19 @@
-R-Ladies Brisbane hosts an event for R-Ladies Gaborone on the introduction to R packages for data cleaning, such as Naniar, Janitor and more with Simisani Ndaba as speaker . 
+R-Ladies Brisbane https://github.com/rladies/meetup-presentations_brisbane hosts an event for R-Ladies Gaborone on the introduction to R packages for data cleaning, such as Naniar, Janitor and more with Simisani Ndaba as speaker . 
+
+All welcome.
+
+Useful URLs Shared during the presentation
+CODATA webinar, importance of data cleaning
+
+Janitor at CRAN: Simple Tools for Examining and Cleaning Dirty Data
+
+Naniar at CRAN: Data Structures, Summaries, and Visualisations for Missing Data
+
+Amelia at CRAN: A Program for Missing Data
+
+DataWizard at CRAN: package to easily manipulate, clean, transform, and prepare your data for analysis.
+
+data.table at CRAN: provides a high-performance version of base R’s data.frame with syntax and feature enhancements for ease of use, convenience and programming speed.
 
 Simisani Ndaba has a history of working in the higher education industry having been working at the Department of Computer Science at the 
 University of Botswana as a Teaching Assistant since 2016. She graduated with her Masters of Science in Computer Information Systems
