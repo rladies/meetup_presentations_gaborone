@@ -11,6 +11,8 @@ Naniar at https://naniar.njtierney.com/articles/getting-started-w-naniar.html: D
 
 Amelia at https://cran.r-project.org/web/packages/Amelia/index.html: A Program for Missing Data
 
+Multiple imputation at https://ete-online.biomedcentral.com/articles/10.1186/s12982-017-0062-6#Sec5: The validity of multiple-imputation-based analyses
+
 DataWizard at https://easystats.github.io/datawizard/: package to easily manipulate, clean, transform, and prepare your data for analysis.
 
 data.table at https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html: provides a high-performance version of base R’s data.frame with syntax and feature enhancements for ease of use, convenience and programming speed.
