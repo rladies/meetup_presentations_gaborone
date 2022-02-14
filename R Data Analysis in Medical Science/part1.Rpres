@@ -1,0 +1,382 @@
+MEDICAL DATA ANLYSIS
+========================================================
+author: Abdelmounim - ESSABBAR
+date: 2022-02-10
+autosize: true
+
+
+Medical Data Analysis
+====================================
+- Epidemiological data 
+- Genomic data
+
+Load data
+====================================
+```{r}
+setwd('~/medicaldataanalysis')
+data = read.csv('strokes.csv')
+head(data)
+str(data)
+```
+
+Structure and variables
+====================================
+```{r}
+str(data)
+```
+
+Data Visualization
+====================================
+### What is the gender distribution ?
+```{r}
+typeof(data$gender)
+```
+### the variable gender is a character
+
+Data Visualization
+====================================
+### load GGPLOT2 library
+```{r, fig.height=8, fig.width=20}
+library('ggplot2')
+ggplot(data , aes(x = gender) )+
+  geom_bar()
+```
+
+Data Visualization
+====================================
+### color (fill) by gender 
+```{r, fig.height=8, fig.width=20}
+library('ggplot2')
+ggplot(data , aes(x = gender, fill = gender) )+
+  geom_bar()
+```
+
+
+
+Data Visualization
+====================================
+### What is the age distribution ?
+```{r}
+typeof(data$age)
+```
+### the variable 'age' is a double (Number)
+
+
+Data Visualization
+====================================
+### Vizualize
+```{r}
+ggplot(data , aes(x = age) )+
+  geom_density(fill = 'lightblue')
+```
+
+
+Data Visualization
+====================================
+### Distribution of age and gender ?
+```{r}
+ggplot(data , aes(x = age) )+
+  geom_density(fill = 'lightblue')
+```
+
+Data Visualization
+====================================
+### Distribution of age and gender ?
+x-axsis: a & color: gender
+```{r, fig.height=8, fig.width=12}
+ggplot(data , aes(x = age) )+
+  geom_density(aes(fill = gender), alpha = .25)
+```
+
+
+Data Visualization
+====================================
+# Does gender relates to strokes ?
+
+
+Data Visualization
+====================================
+# Does gender relates to strokes ?
+Compute frequencies:
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+tabletable_gender_strk = table(data$stroke , data$gender)
+tabletable_gender_strk
+```
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+df_gender_strk = as.data.frame(tabletable_gender_strk)
+head(df_gender_strk)
+```
+
+
+Data Visualization
+====================================
+# Does gender relates to strokes ?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+library(viridis) # load library for colors
+ggplot(data =  df_gender_strk, mapping = aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile( ) +   scale_fill_viridis() +  theme_bw()
+```
+### imbalanced data: High ratio of patient who doesn't have strokes!
+
+
+Data Visualization
+====================================
+# Does age relates to strokes ?
+
+Data Visualization
+====================================
+# Does age relates to strokes ?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+data$stroke = as.factor(data$stroke) #convert stroke (var) to factor
+ggplot(data , aes(x = age) )+
+  geom_density(aes(fill = stroke), alpha = .25)
+```
+
+
+Data Visualization
+====================================
+# How age+gender relates to strokes ?
+
+Data Visualization
+====================================
+# How age+gender relates to strokes ?
+fill : stroke / color : gender
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = age, color = gender, fill = stroke) )+
+  geom_density(alpha = .25)
+```
+
+Data Visualization
+====================================
+# How age+gender relates to strokes ?
+Solution 2: facet wrap
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = age) )+
+  geom_density(aes(fill = stroke), alpha = .25)+
+  facet_wrap(.~gender)
+```
+
+Data Visualization
+====================================
+# How age+gender relates to strokes ?
+Solution 3: facet grid
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = age) )+
+  geom_density(aes(fill = gender), alpha = .25)+
+  facet_grid(stroke~gender)
+```
+
+
+
+====================================
+# What about the other parameters ?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+str(data)
+```
+
+====================================
+# Correlation between mariage and Strokes ?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+table_married_strk = as.data.frame(table(data$stroke , data$ever_married))
+head(table_married_strk)
+```
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+ggplot(data =  table_married_strk, mapping = aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile() + labs(x = 'have stroke', y = 'is married') + 
+  scale_fill_viridis() +   theme_bw()
+```
+#Imbalanced data
+
+====================================
+# Correlation between mariage and Strokes ?
+## Normalize data by stroke
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+table_married_strk = table(data$stroke , data$ever_married)
+df = prop.table(table_married_strk, margin = 1) #The prop.table() is a built-in R function that expresses the table entries as Fraction of Marginal Table. 
+```
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+table_married_strk = as.data.frame(df)
+ggplot(data =  table_married_strk, mapping = aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile() + labs(x = 'have stroke', y = 'is married') + 
+  scale_fill_viridis() +   theme_bw()
+``` 
+
+====================================
+# Impact of weight ? BMI ?
+## Distribution by gender :
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+data$bmi = as.numeric(data$bmi)
+ggplot(data , aes(x = bmi, fill = gender) )+ 
+  geom_density(alpha = .2)
+```
+
+Data visualization
+====================================
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = stroke,  y = bmi) )+
+  geom_point()
+```
+## Problem: overlapping points 
+
+Data visualization
+====================================
+```{r, fig.height=10, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = stroke,  y = bmi) )+
+  geom_jitter ()
+```
+### More tunning ?
+
+Data visualization
+====================================
+```{r, fig.height=10, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = stroke,  y = bmi) )+
+    geom_jitter (alpha = .5) + 
+  geom_boxplot(outlier.shape = NA)
+```
+
+Data visualization
+====================================
+# How early obisity impact the possibility of have strokes ?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+str(data)
+```
+
+Data visualization
+====================================
+# How early obisity impact the possibility of have strokes ?
+```{r, fig.height=6, fig.width=12, fig.align="center"}
+ggplot(data , aes(x = age,  y = bmi, color = stroke) )+
+  geom_point()+  facet_wrap(.~stroke)
+```
+
+Data visualization
+====================================
+# How early obisity impact the possibility of have strokes ?
+```{r, fig.height=6, fig.width=12, fig.align="center"}
+#model LOESS
+ggplot(data , aes(x = age,  y = bmi, color = stroke) )+
+  geom_point(size = .1)+ facet_wrap(.~stroke) +
+  geom_smooth(se = F)
+```
+
+Data visualization
+====================================
+# How early obisity impact the possibility of have strokes ?
+```{r, fig.height=6, fig.width=12, fig.align="center"}
+#model LOESS
+ggplot(data , aes(x = age,  y = bmi, color = stroke) )+
+  geom_point(size = .1)+   geom_smooth(se = F)
+```
+
+Data visualization
+====================================
+### *What about the other parameters ?*
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+data[sapply(data, is.character)] <- lapply(data[sapply(data, is.character)],   as.factor) ## The conversion of chr to factors
+pairs(data) # produces a matrix of scatterplots
+```
+#### not very helpfull :/
+
+====================================
+### *What about the other parameters ?*
+## SOLUTION: Machine learning
+![ML-MODEL](model.png)
+
+Machine learning model
+====================================
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+
+library(tidyverse) 
+
+setwd('~/medicaldataanalysis')
+data = read.csv('strokes.csv')
+
+data$gender <- as.factor(data$gender)
+data$ever_married <- as.factor(data$ever_married)
+data$work_type <- as.factor(data$work_type)
+data$Residence_type <- as.factor(data$Residence_type)
+data$smoking_status <- as.factor(data$smoking_status)
+data$stroke <- factor(data$stroke, levels = c(0,1), labels = c("No","Yes"))
+data$heart_disease <- factor(data$heart_disease, levels = c(0,1), labels = c("No", "Yes"))
+data$hypertension <- factor(data$hypertension, levels = c(0,1), labels = c("No", "Yes"))
+data$bmi <- as.numeric(data$bmi)
+
+str(data)
+```
+Machine learning: Data Preprocesing / Cleaning
+====================================
+### Data cleaning: # how many "N/A" values are in my dataset per column?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+#Plotting variables with null values
+library(naniar)
+gg_miss_var(data)
+
+```
+
+
+```
+Machine learning: Data Preprocesing / Cleaning
+====================================
+### Data cleaning: # how many "N/A" values are in my dataset per column?
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+avgbmi <- data %>% group_by(gender) %>% summarise(avg_bmi = mean(bmi,na.rm = TRUE))
+avgbmi
+
+data$bmi <- ifelse(is.na(data$bmi)==TRUE, avgbmi$avg_bmi[avgbmi$gender %in% data$gender], data$bmi)
+```
+```
+
+
+Machine learning: Data Preprocesing / Cleaning
+====================================
+### Partition training and testing data
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+#Partition training and testing data
+set.seed(7)
+#train: 80% - test 20%
+sample_index <- sample(nrow(data),nrow(data)*0.8)
+data_train <- data[sample_index,]
+data_test <- data[-sample_index,]
+```
+
+Machine learning: Random Forest
+====================================
+#Initial random forest model
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+library(randomForest)
+forest1 <- randomForest(stroke~.-id,data = data_train,ntree = 1000,mtry = 5)
+forest1
+```
+
+
+Machine learning: Optimal Random Forest
+====================================
+### Finding the optimal number of variables to use
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+errorvalues <- vector()
+for (i in 3:10){
+  temprf <- randomForest(stroke~.-id,data = data_train,ntree = 1000,mtry = i)
+  errorvalues[i] <- temprf$err.rate[nrow(temprf$err.rate),1]
+}
+
+plot(errorvalues)
+```
+
+
+
+Machine learning: Random Forest
+====================================
+### Creating a new rf model with the optimal number of variables
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+library(randomForest)
+forest2 <- randomForest(stroke~.-id,data = data_train,ntree = 1000,mtry = 3)
+forest2
+```
+
+Prediction
+====================================
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+head(data_test[5]) # SELECT A PATIENT
+predict(forest2, newdata=data_test[5,-12])
+
+```
