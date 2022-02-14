@@ -1,0 +1,426 @@
+COVID-19 data analysis
+========================================================
+```{r, echo=FALSE}
+setwd('~/medicaldataanalysis')
+
+library(readr)
+library(tidyverse)
+library(plotly)
+library(ggthemes)
+library(gganimate)
+library(geosphere)
+library(DT)
+library(scales)
+library(openair)
+library(corrplot)
+library(viridisLite)
+library(viridis)
+library(RColorBrewer)
+library(dplyr)
+```
+
+COVID-19 data analysis
+========================================================
+```{r}
+#load data
+
+covid_data <- read.csv(file = "full_data.csv")
+
+covid_data_c <- covid_data[ ! is.na(covid_data$new_cases), ] #remove lines when no COVID cases are detected
+covid_data_c$date <- as.Date( as.character(covid_data_c$date) )
+head(covid_data)
+```
+
+COVID-19 data analysis
+========================================================
+```{r}
+
+#load a table with countries geographic metadata
+codes <- read.csv('codes.csv')
+#merge the countries geographic metadata with covid data
+covid_data <- merge( covid_data_c ,  codes,  by = 'iso_code' ) # merge by the column iso_code
+
+```
+
+COVID-19 data visualization
+========================================================
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+# select a first country to study 
+covid_Morocco <- covid_data[covid_data$location == 'Morocco', ]
+# plot the number of cases
+ggplot(data = covid_Morocco , aes(x = date, y = new_cases_per_million) )+
+  geom_point()
+```
+COVID-19 data visualization
+========================================================
+```{r, fig.height=8, fig.width=12, fig.align="center"}
+# select a first country to study 
+covid_Morocco <- covid_data[covid_data$location == 'Morocco', ]
+# plot the number of cases
+ggplot(data = covid_Morocco , aes(x = date, y = new_cases_per_million) )+
+  geom_point() + geom_smooth(span = 0.25, se = F, color = 'red', size = 2) # add model
+```
+
+
+COVID-19 data visualization
+========================================================
+### Two populations: Number of cases
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+covid_2_countries <- covid_data[covid_data$location == 'Morocco' | covid_data$location == 'Botswana', ]
+ggplot(data = covid_2_countries , aes(x = date, y = new_cases_per_million, color = location) )+
+  geom_point() + geom_smooth(span = 0.3, se = F, size = 2) # add model
+```
+
+COVID-19 data visualization
+========================================================
+### Two populations: Vaccination rate
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+covid_2_countries <- covid_data[covid_data$location == 'Morocco' | covid_data$location == 'Botswana', ]
+# y = people_vaccinated_per_hundred
+ggplot(data = covid_2_countries , aes(x = date, y = people_vaccinated_per_hundred , color = location) )+
+  geom_point() + geom_smooth(span = 0.25, se = F, size = 2) # add model
+```
+
+
+COVID-19 data visualization
+========================================================
+### Two populations: Vaccination rate
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+ggplot(data = covid_2_countries , aes(x = date, y = people_vaccinated_per_hundred) )+
+  stat_smooth( geom = 'area', alpha = .3, aes( fill = location ) , method = 'lm' , se = F, fullrange = T )+
+  geom_smooth(aes( color = location, y = new_deaths_per_million * 10),  se = F, span = .05)+
+  ylim(0, NA) + theme_bw()
+```
+
+COVID-19 data visualization
+========================================================
+### World Map
+```{r, fig.height=4, fig.width=12, fig.align="center", results='hide', message = FALSE, eval=FALSE}
+Current_day_data <- covid_data[covid_data$date == as.Date('2022-01-30'),  ]
+
+plot_geo(Current_day_data) %>%
+  add_trace( 
+    paper_bgcolor = '#e8f7fc',
+    z = ~new_cases, 
+    locations = ~iso_code,
+    color = ~new_cases,
+    colors = 'Reds'
+  ) %>%
+  colorbar(title = "Cases") %>%
+  layout(geo = geo)
+```
+
+
+COVID-19 data visualization
+========================================================
+### World Map: cases per 1M population
+```{r, fig.height=4, fig.width=12, fig.align="center", results='hide', message = FALSE, eval=FALSE}
+![cases.png](cases.png)
+```
+
+
+
+COVID-19 data visualization
+========================================================
+### World Map: cases per 1M population
+```{r, fig.height=4, fig.width=12, fig.align="center", results='hide', message = FALSE, eval=FALSE}
+![cases_per_m.png](cases_per_m.png)
+```
+
+COVID-19 data visualization
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+names(covid_data)
+```
+```{r, fig.height=4, fig.width=12, fig.align="center", results='hide', message = FALSE, eval=FALSE}
+
+## Now, let’s find out the correlations between all these variables. what we are doing is to quantify and visualize them.
+```
+
+COVID-19 data visualization
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+covid_data$day <- as.numeric(covid_data$date)
+covid_data %>% select(day, new_cases, new_deaths,hosp_patients, new_tests, new_vaccinations, positive_rate,people_fully_vaccinated, life_expectancy,gdp_per_capita) %>%
+  na.omit() %>%
+  cor(use = "pairwise.complete.obs") %>%
+  corrplot.mixed(tl.col = "black", tl.pos = "d", tl.cex = 0.7, cl.cex = 0.7,  number.cex = 0.7)
+
+```
+COVID-19 data visualization
+========================================================
+
+
+
+
+Genomic Data Analysis
+========================================================
+### **Definition:** 
+_Genomics is an interdisciplinary field of biology focusing on the structure, function, evolution, mapping, and editing of genomes. A genome is an organism's complete set of DNA, including all of its genes as well as its hierarchical, three-dimensional structural configuration._
+
+Genomic Data Analysis of COVID-19
+========================================================
+<p style="text-align: center;">
+<b>
+Corona ≠ SARS-CoV ≠ SARS-CoV-2 ≠ COVID-19
+</b>
+</p>
+![sars.jpg](sars.jpg)
+
+
+SARS-CoV-2 Genomic Database
+========================================================
+GISAID Database
+![gisaid.png](gisaid.png)
+
+SARS-CoV-2 Genomic Database
+========================================================
+![genomic_data.png](genomic_data.png)
+
+SARS-CoV-2 Genomic Database
+========================================================
+![fltr.png](fltr.png)
+
+
+SARS-CoV-2 Genomic Database
+========================================================
+![data_genomic.png](data_genomic.png)
+
+
+Metadata Analysis
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+#load botswana metadata
+BT.metadata = unique(read.csv2 ('botswana.metadata.tsv', sep = '\t'))
+BT.metadata = BT.metadata[BT.metadata$country == 'Botswana',]
+dim(BT.metadata)
+#load morocco metadata
+MA.metadata = unique(read.csv2 ('morocco.metadata.tsv', sep = '\t'))
+MA.metadata = MA.metadata[MA.metadata$country == 'Morocco',]
+dim(MA.metadata)
+```
+
+
+
+Metadata Analysis
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+head(BT.metadata)
+```
+
+Metadata Analysis
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+names(BT.metadata)
+```
+SARS-CoV-2 Variants
+========================================================
+There are many lineage of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), that cause COVID-19. Some are believed, or have been stated, to be of particular importance due to their potential for increased transmissibility, increased virulence... These variants contribute to the continuation of the COVID-19 pandemic. <br>
+
+![vars](vars.png)
+
+
+
+Metadata Analysis: Collection date
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+#merge two dataframes into one
+metadata = rbind(BT.metadata, MA.metadata)
+#convert date col to Date format
+metadata$Date = strptime(metadata$date,format="%Y-%m-%d")
+#fill lines with incomplete date with submission date
+metadata = metadata %>%
+    mutate(date = na_if(date, "")) %>% 
+    fill(date_submitted)
+# Remove N/A rows
+metadata = metadata[! is.na(metadata$date), ]
+metadata$date = as.Date(metadata$date)
+```
+Metadata Analysis: Collection date
+========================================================
+```{r, fig.height=6, fig.width=12, fig.align="center"}
+ggplot(data = metadata , aes(x = date))+
+  geom_bar()
+```
+
+Metadata Analysis: Collection date
+========================================================
+## represent data by months instead of days
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+# zoo lib to convert date to YM
+library(zoo)
+metadata$YM = zoo::as.yearmon(metadata$date)
+ggplot(data = metadata , aes(x = YM))+
+  geom_bar()
+```
+
+Metadata Analysis: Collection date
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+# add colors and facet_wrap
+ggplot(data = metadata , aes(x = YM, fill = country))+
+  geom_bar() + facet_wrap(.~country, scales = 'free')
+```
+
+Metadata Analysis: Lineages
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+# add colors and facet_wrap
+BT.lineages = as.data.frame(table(BT.metadata$pangolin_lineage))
+#sort by most freq
+BT.lineages = BT.lineages[order(BT.lineages$Freq , decreasing = T), ]
+head(BT.lineages)
+```
+
+Metadata Analysis: Lineages
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+# Vizualize top 15 frequent lineages
+BT.freq.lin <- BT.lineages %>% arrange(desc(Freq)) %>%  slice(1:15)
+ggplot(BT.freq.lin, aes(x = Var1 , y = Freq, fill = Var1))+
+  geom_bar(stat= 'identity')
+```
+<p style="text-align: center;">
+Dominant Lineage ? Data Imbalance ??
+</p>
+
+Metadata Analysis: Lineages and Date
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+BT.lineages.date = as.data.frame(table(metadata[ metadata$country == 'Botswana' , c('pangolin_lineage','YM')]))
+colnames(BT.lineages.date) = c('pangolin_lineage','YM','Nlineage')
+
+# number of sequences per month
+BT.seq.month = as.data.frame(table(metadata[ metadata$country == 'Botswana' , c( 'YM')]))
+colnames(BT.seq.month) = c('YM','Nsamples')
+```
+
+
+
+Metadata Analysis: Lineages and Date
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+
+BT.lineages.date = merge(BT.lineages.date , BT.seq.month , by = 'YM')
+BT.lineages.date$frequency = BT.lineages.date$Nlineage / BT.lineages.date$Nsamples
+BT.lineages.date = BT.lineages.date[BT.lineages.date$frequency != 0 , ] # remove lines with 0 
+head(BT.lineages.date)
+```
+
+Metadata Analysis: Dominant lineages
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+
+BT.dominant <-  BT.lineages.date %>% 
+  arrange(desc(frequency)) %>% 
+  group_by(YM) %>% slice(1)
+
+BT.dominant$pangolin_lineage
+
+```
+
+Metadata Analysis: Dominant lineages
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+
+
+ggplot(BT.dominant, aes(x = YM , y = frequency, fill = pangolin_lineage))+
+  geom_bar(stat= 'identity')
+
+```
+
+Genomic projection on Epidemiologic
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+BT.new_cases <- covid_data[ covid_data$location == 'Botswana', c('date','new_cases') ]
+BT.new_cases$YM = as.yearmon(BT.new_cases$date)
+#calculate sum of cases each month
+BT.cases_by_mon = BT.new_cases %>%
+  group_by(YM) %>%
+  summarise_at(vars(-date), funs(sum(., na.rm=TRUE)))
+
+ggplot(BT.cases_by_mon , aes(x = YM , y = new_cases))+
+  geom_point()+
+  geom_smooth(span = 0.01, se = F, method = 'gam')
+
+
+```
+Genomic projection on Epidemiologic
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+BT.dominant$YM = as.yearmon(BT.dominant$YM)
+ggplot(data = BT.dominant)+
+  geom_bar(stat= 'identity',  aes(x = YM , y = 10000, fill = pangolin_lineage))+
+  geom_point(data= BT.cases_by_mon , aes(x = YM , y = new_cases) )
+
+```
+
+Genomic projection on Epidemiologic
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+ggplot(data = BT.dominant)+
+  geom_bar(stat= 'identity',  aes(x = YM , y = 50000, fill = pangolin_lineage))+
+  geom_line(data= BT.cases_by_mon , aes(x = YM , y = new_cases))
+```
+
+
+
+
+Genomic projection on Epidemiologic
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center"}
+
+
+
+MA.lineages.date = as.data.frame(table(metadata[ metadata$country == 'Morocco' , c('pangolin_lineage','YM')]))
+colnames(MA.lineages.date) = c('pangolin_lineage','YM','Nlineage')
+MA.seq.month = as.data.frame(table(metadata[ metadata$country == 'Morocco' , c( 'YM')]))
+colnames(MA.seq.month) = c('YM','Nsamples')
+
+MA.lineages.date = merge(MA.lineages.date , MA.seq.month , by = 'YM')
+MA.lineages.date$frequency = MA.lineages.date$Nlineage / MA.lineages.date$Nsamples
+MA.lineages.date = MA.lineages.date[MA.lineages.date$frequency != 0 , ] # remove lines with 0 
+
+MA.dominant <-  MA.lineages.date %>% 
+  arrange(desc(frequency)) %>% 
+  group_by(YM) %>% slice(1)
+
+
+MA.new_cases <- covid_data[ covid_data$location == 'Morocco', c('date','new_cases') ]
+MA.new_cases$YM = as.yearmon(MA.new_cases$date)
+MA.cases_by_mon = MA.new_cases %>%
+  group_by(YM) %>%
+  summarise_at(vars(-date), funs(sum(., na.rm=TRUE)))
+
+
+MA.dominant$YM = as.yearmon(as.character(MA.dominant$YM))
+
+ggplot()+
+  geom_bar(data = MA.dominant , stat= 'identity',  aes(x = YM , y = 250000, fill = pangolin_lineage) )+
+  geom_line(data= MA.cases_by_mon , aes(x = YM , y = new_cases) )+
+  theme_bw()
+
+ggplot(data = MA.dominant)+
+  geom_bar(stat= 'identity',  aes(x = YM , y = 250000, fill = pangolin_lineage))+
+  geom_line(data= MA.cases_by_mon , aes(x = YM , y = new_cases))
+```
+
+
+
+Genomic projection on Epidemiologic
+========================================================
+```{r, fig.height=4, fig.width=12, fig.align="center", echo=FALSE}
+
+ggplot(data = BT.dominant)+ 
+  geom_bar(stat= 'identity',  aes(x = YM , y = 50000, fill = pangolin_lineage))+
+  geom_line(data= BT.cases_by_mon , aes(x = YM , y = new_cases))
+
+ggplot(data = MA.dominant)+
+  geom_bar(stat= 'identity',  aes(x = YM , y = 250000, fill = pangolin_lineage))+
+  geom_line(data= MA.cases_by_mon , aes(x = YM , y = new_cases))
+```
+
+
+Genomic projection on Epidemiologic
+========================================================
+![workflow.png](workflow.png)
