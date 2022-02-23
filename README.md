@@ -18,4 +18,4 @@ https://www.facebook.com/RLadiesGaborone/
 https://www.linkedin.com/company/r-ladies-gaborone/
 
 
-https://www.youtube.com/channel/UCO5Aa1E7pSh5w2pxPgkPDog
+https://www.youtube.com/channel/UCMzxf1PB54mTnWJVE8xdGlw
