@@ -3,3 +3,5 @@ Epidemiology is the study of the distribution and determinants of health-related
 
 Brianna Lindsay, MPH, PhD, is an infectious disease epidemiologist based full-time in Zambia. She serves as primary epidemiologic personnel for the CDC/PEPFAR-funded CIRKUITS HIV treatment and prevention service delivery programs, supporting data collection, database design, and analysis. She also assists globally through programs in the affiliated Center for International Health, Education, and Biosecurity (Ciheb) at the University of Maryland Baltimore, supporting eight countries across sub-Saharan Africa. Dr. Lindsay applies quantitative data analysis to inform epidemiological investigations and practical research in infectious disease prevention and treatment in real-world settings. She has published extensively in burden of disease estimation using various study designs has expertise in quantitative methods as well as analysis of high-throughput and advanced molecular detection techniques. She has planned and organized a number of global health data workshops in Africa, Asia and the U.S.
 https://twitter.com/brlindsay88
+
+
