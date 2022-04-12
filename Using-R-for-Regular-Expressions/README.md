@@ -2,7 +2,7 @@
 
 🗓 2022-04-09
 
-📍 [Virtual](https://www.meetup.com/rladies-cologne/events/284911356/) (This session was jointly co-hosted with R-Ladies Gabarone [@rladiesgaborone](https://mobile.twitter.com/rladiesgaborone))
+📍 [Virtual](https://www.meetup.com/rladies-gaborone/events/284921469/) (This session was jointly co-hosted with R-Ladies Cologne [@rladies_cologne](https://mobile.twitter.com/rladies_cologne))
 
 💻 [Slides](https://rladiescologne.github.io/Using-R-for-Regular-Expressions/#1)
 
