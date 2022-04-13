@@ -1,4 +1,4 @@
-#All you need is love and R
+# All you need is love and R
 
 Michela Cameletti from the University of Bergamo talks about academic (teaching and research) activities for which R is used.
 
