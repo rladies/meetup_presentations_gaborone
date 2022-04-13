@@ -1,5 +1,7 @@
 # R Data Analysis in Medical Science
 
+🗓 26-02-2022
+
 About The speaker:
 PhD candidate Mouneem Essabbar talks about data analysis and some of its application in Medical Science.
 
