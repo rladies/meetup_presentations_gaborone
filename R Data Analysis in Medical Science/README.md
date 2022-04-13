@@ -2,7 +2,8 @@
 
 🗓 26-02-2022
 
-About The speaker:
+**About The speaker**
+
 PhD candidate Mouneem Essabbar talks about data analysis and some of its application in Medical Science.
 
 👤 [Mouneem ](https://twitter.com/mouneem)
