@@ -2,7 +2,7 @@
 
 🗓 11-12-2021
 
-About the speaker:
+**About the speaker**
 
 Michela Cameletti from the University of Bergamo talks about academic (teaching and research) activities for which R is used.
 
