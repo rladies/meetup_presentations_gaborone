@@ -1,5 +1,4 @@
-
-Details:
+#All you need is love and R
 
 Michela Cameletti from the University of Bergamo talks about academic (teaching and research) activities for which R is used.
 
@@ -7,4 +6,4 @@ Michela Cameletti is an Associate Professor in Statistics at the Department of E
 
 👤 [Michela Cameletti](https://twitter.com/micameletti)
 
-Presentation  in Youtube 📺 [Recording](https://www.youtube.com/watch?v=opm9FF-2tHo)
+Youtube 📺 [Recording](https://www.youtube.com/watch?v=opm9FF-2tHo)
