@@ -1,12 +1,10 @@
 ## How to time travel with your code: Foundations of Git connectivity with RStudio
 
+Gracielle Higino  covers foundations of version control, useful git commands and connections with RStudio.
 Contacts
 Twitter: @GracielleHigino / graciellehigino@gmail.com
-             @RLadiesGaborone / gaborone@rladies.org
-             graciellehigino@gmail.com
-
-
-Collaborative notes
+ 
+# Collaborative notes
 [sotware carpentry notes on version control](https://swcarpentry.github.io/git-novice/)  
 
 [usethis package documentation](https://usethis.r-lib.org/)     
@@ -15,9 +13,9 @@ Collaborative notes
 
 [emoji guide for commit messages](https://gitmoji.dev/)    
 
-https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications
+[Configuring notifications](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications)
 
-https://mozillascience.github.io/study-group-orientation/3.1-collab-vers-github.html
+[Collaboration, Version Control, & GitHub](https://mozillascience.github.io/study-group-orientation/3.1-collab-vers-github.html)
 
 ## Useful book:
 [happygitwithr](https://happygitwithr.com/index.html)
