@@ -17,6 +17,8 @@ Twitter: @GracielleHigino / graciellehigino@gmail.com
 
 [Collaboration, Version Control, & GitHub](https://mozillascience.github.io/study-group-orientation/3.1-collab-vers-github.html)
 
+[etherpad](https://etherpad.wikimedia.org/p/r-ladies-git)
+
 ## Useful book:
 [happygitwithr](https://happygitwithr.com/index.html)
     
