@@ -5,6 +5,9 @@ Contacts
 Twitter: @GracielleHigino / graciellehigino@gmail.com
  
 # Collaborative notes
+
+[Slides](https://zenodo.org/record/6516065#.YnS_idpBy3A)
+
 [sotware carpentry notes on version control](https://swcarpentry.github.io/git-novice/)  
 
 [usethis package documentation](https://usethis.r-lib.org/)     
