@@ -19,6 +19,10 @@ the INCF, and the Open Science Special Interest Group of the Organization for Hu
 
 --
 
+[Nipype Tutorial](https://miykael.github.io/nipype_tutorial/)
+
+--
+
 Annual Brain Imgaing Events:
 
 - [OHBM Brainhack (Brain Hackathon) June 16-18](https://ohbm.github.io/hackathon2022/)[registration via](https://www.humanbrainmapping.org/i4a/ams/meetings/index.cfm?controller=meetings&action=startRegistration&conferenceID=142&reginit=1&pageID=4073 )
