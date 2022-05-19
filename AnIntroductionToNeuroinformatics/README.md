@@ -9,7 +9,7 @@ In this talk, we will discuss how to analyze brain imaging data in order to make
 
 👤 **About the speaker**
 
-[Dr. Camille Maumet](https://twitter.com/cmaumet)is a research scientist in neuroinformatics at Inria, Univ Rennes, CNRS, Inserm in Rennes, France. 
+[Dr. Camille Maumet](https://twitter.com/cmaumet) is a research scientist in neuroinformatics at Inria, Univ Rennes, CNRS, Inserm in Rennes, France. 
 Her research focuses on the variability of analytical pipelines and its impact on our ability to reuse brain imaging datasets. 
 She obtained her PhD in computer science at the University of Rennes on the analyses of clinical neuroimaging datasets in functional magnetic resonance imaging and 
 arterial spin labelling. She was then a postdoctoral research fellow in the Institute of Digital Healthcare at the University of Warwick and the University of Oxford, 
