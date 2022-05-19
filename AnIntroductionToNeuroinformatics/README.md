@@ -19,6 +19,9 @@ the INCF, and the Open Science Special Interest Group of the Organization for Hu
 
 --
 
+recording 📺 [An Introduction to Neuroinformatics](https://www.youtube.com/watch?v=R1bQVK303Ww&t=10s)
+
+--
 [Nipype Tutorial](https://miykael.github.io/nipype_tutorial/)
 
 --
