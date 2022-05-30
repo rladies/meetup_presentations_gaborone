@@ -1,0 +1,248 @@
+---
+title: "My formatted research project"
+author: "Jenine K. Harris"
+output:  html_document
+---
+
+```{r openLibraries, include=FALSE}
+# hide this code chunk and its output
+# opening the packages needed
+library(package = "tidyverse")
+library(package = "haven")
+library(package = "table1")
+library(package = "finalfit")
+library(package = "knitr")
+knitr::opts_chunk$set(fig.width=6, fig.asp=.50) 
+```
+
+```{r echo=FALSE}
+xfun::embed_files(c('rmarkdown-workshop-KEY.Rmd', 
+                    'Pew Research Center Global Attitudes Spring 2019 Dataset WEB.sav'))
+```
+
+
+```{r openData, include = FALSE}
+# hide this code chunk and its output 
+# use read_spss function to read the spss file 
+globalData2019 <- read_spss(file = "Pew Research Center Global Attitudes Spring 2019 Dataset WEB.sav")
+# clean the data set 
+globalData2019clean <- globalData2019 %>%
+  filter(country %in% c(16, 21, 26, 30)) %>% 
+  select(country, SEX, AGE, BETTER_GENDER, COUNTRY_SATIS, 
+         ECON_SIT, LADDER_NOW) %>% 
+  zap_labels() %>%
+  mutate(AGE = na_if(AGE, 98)) %>% 
+  mutate(AGE = na_if(AGE, 99)) %>% 
+  mutate(LADDER_NOW = na_if(LADDER_NOW, 98)) %>% 
+  mutate(LADDER_NOW = na_if(LADDER_NOW, 99)) %>% 
+  mutate(country = recode_factor(country,
+                             '16' = 'Kenya',
+                             '21' = 'Nigeria',
+                             '26' = 'South Africa',
+                             '34' = 'Tunisia')) %>%
+  mutate(SEX = recode_factor(SEX,
+                             '1' = 'Male',
+                             '2' = 'Female')) %>% 
+  mutate(BETTER_GENDER = recode_factor(BETTER_GENDER,
+                                    '1' = 'Men',
+                                    '2' = 'Women',
+                                    '3' = 'Same/both equally',
+                                    '8' = NA_character_,
+                                    '9' = NA_character_)) %>% 
+  mutate(COUNTRY_SATIS = recode_factor(COUNTRY_SATIS,
+                                       '1' = 'Satisfied',
+                                       '2' = 'Dissatisfied',
+                                       '8' = NA_character_,
+                                       '9' = NA_character_)) %>% 
+  mutate(ECON_SIT = recode_factor(ECON_SIT,
+                                  '1' = 'Very good',
+                                  '2' = 'Somewhat good',
+                                  '3' = 'Somewhat bad',
+                                  '4' = 'Very bad',
+                                  '8' = NA_character_,
+                                  '9' = NA_character_)) 
+# summarize the clean data object
+summary(object = globalData2019clean)
+```
+
+### Project description
+
+Using the 2019 Global Attitudes & Trends data set from the Pew Internet & American Life website, I will answer the research question, Do perceptions about the quality of life vary by country?
+
+The data and code book are available on the Pew website (need free account): <https://www.pewresearch.org/global/dataset/spring-2019-survey-data/>
+
+### Measurement
+
+To answer my research question, I used a subset of the data that included survey participants responses to the following questions.
+
+##### Table. Survey questions and response options.
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| Characteristic                                                                                                                                                                                                                                                      | Categories/Units                                 |
++=====================================================================================================================================================================================================================================================================+==================================================+
+| Country                                                                                                                                                                                                                                                             | Kenya, Nigeria, South Africa, United States      |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| Gender (RECORD BY OBSERVATION)                                                                                                                                                                                                                                      | Male, Female                                     |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| How old were you at your last birthday? (RECORD AGE IN YEARS)                                                                                                                                                                                                       | Years (through 97)                               |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| All things considered, who has a better life in this country - men or women?                                                                                                                                                                                        | Men, Women, Same/Both equally                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| Overall, are you satisfied or dissatisfied with the way things are going in our country today?                                                                                                                                                                      | Satisfied, Dissatisfied                          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| Now thinking about our economic situation, how would you describe the current economic situation in (survey country) -- is it very good, somewhat good, somewhat bad, or very bad?                                                                                  | Very good, Somewhat good, Somewhat bad, Very bad |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+| Here is a ladder representing the ladder of life. Let's suppose the top of the ladder represents the best possible life for you; and the bottom, the worst possible life for you. On which step of the ladder do you feel you personally stand at the present time? | 0 (worst) to 10 (best)                           |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+
+This paragraph might talk about about the process and statistical methods used. What happened during data management (recoding, missing value handling), which descriptive statistics and statistical tests were used, what assumptions were checked.
+
+### Results
+
+Here is a table showing the basic descriptive statistics.
+
+##### Table. Characteristics of 4,543 survey participants in Kenya, Nigeria, South Africa, and Tunisia (Data source: Pew Research Center Global Attitudes Survey (2019)).
+
+```{r labelVars, include=FALSE}
+# hide this code chunk and its output 
+# add labels so the table is well formatted
+label(globalData2019clean$country) <- "Country"
+label(globalData2019clean$SEX) <- "Sex"
+label(globalData2019clean$AGE) <- "Age" 
+label(globalData2019clean$BETTER_GENDER) <- "Who has a better life in this country"
+label(globalData2019clean$COUNTRY_SATIS) <- "Satisfied/dissatisfied with country"
+label(globalData2019clean$ECON_SIT) <- "Describe economic situation country" 
+label(globalData2019clean$LADDER_NOW) <- "Worst (0) to best (10) life"
+# if using table1 for table
+# add units for anything that needs them
+units(globalData2019clean$AGE) <- "years"
+```
+
+```{r makeTable, echo=FALSE, warning=FALSE, message=FALSE}
+# hide code but keep output
+# add table of descriptives
+# tables with table1 package work well in html documents
+# table1 options: 
+# https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html
+# finalfit + kable works in both html and word:
+tableDesc <- globalData2019clean %>% 
+  summary_factorlist(explanatory = c('SEX',  'BETTER_GENDER', 
+                                     'COUNTRY_SATIS',
+                                     'ECON_SIT', 'AGE', 'LADDER_NOW'), 
+         cont = "median")
+kable(tableDesc, row.names=FALSE,
+      col.names = c("Characteristic",
+                    "Category",
+                    "n (%)"),
+      align=c("l", "l", "r"))
+```
+
+Maybe add some text here pointing out anything interesting or unexpected in the table that the readers might want to view more closely. Also explain anything in the table that suggests how the research question might eventually be answered.
+
+##### Figure. The distribution of survey participant age by country.
+
+```{r histoAge, echo=FALSE, warning=FALSE, message=FALSE}
+# hide the code chunk but show the histograms
+# checking distributions for age variable
+# In facets by country
+globalData2019clean %>% 
+  ggplot(aes(x = AGE)) +
+  geom_histogram() +
+  facet_wrap(facets = vars(country)) +
+  labs(x = "Age in years", 
+       caption = "Data source: Pew Research Center Global Attitudes Survey (2019)") +
+  theme_bw(base_size = 10, base_family = "serif")
+```
+
+##### Figure. The distribution of survey participant responses about their place on the life ladder by country.
+
+```{r histoLadder, echo = FALSE, warning=FALSE, message=FALSE}
+# hide the code chunk but show the histograms
+# checking distributions for ladder variable
+# In facets by country
+globalData2019clean %>% 
+  ggplot(aes(x = LADDER_NOW)) +
+  geom_histogram() +
+  facet_wrap(facets = vars(country)) +
+  labs(x = "Life ladder (0 = worst, 10 = best)", 
+       caption = "Data source: Pew Research Center Global Attitudes Survey (2019)")  +
+  theme_bw(base_size = 10, base_family = "serif") 
+```
+
+#### Characteristics of the sample by country
+
+There would be a paragraph here pointing out any descriptives that might be of interest or useful in helping to answer the research question. You could do this in a paragraph or, if there are several things to point out, maybe a bulleted list would be useful.
+
+-   This is a first-level bullet point about something you found
+
+    -   Here is a second level bullet point related to the point above
+    -   Here is another second level bullet point related to the point above
+
+-   This is another first-level bullet point about something you found
+
+    -   Here is a second level bullet point related to the point above
+
+#### Visualizing the relationships between country and quality of life
+
+##### Figure. Satisfaction with how things are going by country according to 4543 participants in a 2019 survey of people from Kenya, Nigeria, South Africa, and Tunisia.
+
+```{r barSatis, echo=FALSE}
+# hide the code chunk but show the figure
+# Satisfaction with the way things are going by participant country
+globalData2019clean %>% 
+  group_by(COUNTRY_SATIS, country) %>% 
+  count() %>% 
+  group_by(country) %>% 
+  mutate(perc = 100 * (n / sum(n))) %>% 
+  drop_na(COUNTRY_SATIS) %>% 
+  ggplot(aes(x = country, y = perc, fill = COUNTRY_SATIS)) +
+  geom_col(position = "dodge") +
+  labs(x = "Country",
+       y = "Percentage within country",
+       fill = "Satisfaction with\nhow things\nare going") +
+  theme_bw(base_size = 10, base_family = "serif") +
+  #scale_fill_brewer(palette = "Dark2") +
+  scale_fill_grey()
+```
+
+##### Figure. Life ladder by country for 4543 participants in a 2019 survey of people from Kenya, Nigeria, South Africa, and Tunisia.
+
+```{r boxLadder, echo=FALSE, warning=FALSE, message=FALSE}
+# hide the code chunk but show the figure
+# Life ladder by country
+globalData2019clean %>% 
+  ggplot(aes(y = LADDER_NOW, x = country)) +
+  geom_boxplot(fill = 'grey40', alpha = .4) +
+  labs(x = "Country",
+       y = "Life ladder (0 = worst, 10 = best)")  +
+  theme_bw(base_size = 10, base_family = "serif") 
+```
+
+##### Figure. Who has a better life by country according to 4543 participants in a 2019 survey of people from Kenya, Nigeria, South Africa, and Tunisia.
+
+```{r barGender, echo=FALSE}
+# hide the code chunk but show the figure
+# who has things better
+globalData2019clean %>% 
+  group_by(BETTER_GENDER, country) %>% 
+  count() %>% 
+  group_by(country) %>% 
+  mutate(perc = 100 * (n / sum(n))) %>% 
+  drop_na(BETTER_GENDER) %>% 
+  ggplot(aes(x = country, y = perc, fill = BETTER_GENDER)) +
+  geom_col(position = "dodge") +
+  labs(x = "Survey participant country",
+       y = "Percent within country",
+       fill = "Who has a better life") +
+  theme_bw(base_size = 10, base_family = "serif") +
+  #scale_fill_brewer(palette = "Dark2") +
+  scale_fill_grey()
+```
+
+Add some text about each of the figures, pointing out interesting patterns or information that is relevant to the project research question.
+
+### Discussion
+
+After all the methods and results, you would usually summarize the key points from your analyses and add some context by connecting your results to published evidence relevant to your work. Here is where you might add citations. More discussion of the findings that cite some of the literature in this area. Another statement about the literature and citing it goes here.
+
+### References
