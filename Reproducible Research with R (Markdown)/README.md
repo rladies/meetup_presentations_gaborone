@@ -1,4 +1,4 @@
-# R-Ladies Gaborone July 2022 Workshop: Reproducible Research with R (Markdown)
+# R-Ladies Gaborone 09th July 2022 Workshop: Reproducible Research with R (Markdown)
 
 ![image](https://user-images.githubusercontent.com/24517243/168156852-f9e64853-611b-46af-92f8-fa1469e64722.png)
 
