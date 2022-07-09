@@ -84,3 +84,5 @@ Other places to get more instruction or information on R:
   <li> https://community.rstudio.com
   <li> ...and so many more!
 </ul>
+
+https://etherpad.wikimedia.org/p/Reproducible_Research_with_R_markdown_09_07_22
