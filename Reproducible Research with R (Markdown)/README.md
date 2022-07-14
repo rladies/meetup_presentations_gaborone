@@ -2,6 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/24517243/168156852-f9e64853-611b-46af-92f8-fa1469e64722.png)
 
+[Events resources and roll call](https://etherpad.wikimedia.org/p/Reproducible_Research_with_R_markdown_09_07_22)
+
 ### Information and Instructions to Prepare for the Workshop
 
 To follow along, you will need to do two things before the workshop:
@@ -85,4 +87,4 @@ Other places to get more instruction or information on R:
   <li> ...and so many more!
 </ul>
 
-https://etherpad.wikimedia.org/p/Reproducible_Research_with_R_markdown_09_07_22
+
