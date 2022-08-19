@@ -41,7 +41,9 @@ i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudi
 
 **📢 Announcements!**
 <- [Sentiment Analysis😀🤔☹️using R SAT, OCT 8 - 10:00 AM SAST/CAT](https://www.meetup.com/rladies-gaborone/events/286102816/)
+
     [1] [Find your time](https://www.timeanddate.com/worldclock/fixedtime.html?msg=Sentiment+Analysis+using+R+%F0%9F%98%80%F0%9F%A4%94%E2%98%B9%EF%B8%8F&iso=20221008T12&ah=1)
+
     [1] [Previous Events](https://www.youtube.com/channel/UCMzxf1PB54mTnWJVE8xdGlw)
 
 <- [Botswana R Users, Working with SQL in R, SAT, AUG 20 · 6:00 PM CAT](https://www.meetup.com/botswana-r-users/events/287299746/)
