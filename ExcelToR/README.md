@@ -17,6 +17,7 @@ R and Excel are beneficial in different ways. Excel starts off easier to learn a
 
 Yanina Bellini Saibene & Paola Corrales in Workshop Education English gives us a crash course intended for people who use spreadsheets for data manipulation and have never programmed, but would like to learn how to work with R. Therefore its starts from the beginning: why use R? and where to start?
 
+
 **R Resources:** 
 a. [The R Project for Statistical Computing](https://www.r-project.org/)
 
@@ -35,6 +36,7 @@ g. [Full Workshop](https://yabellini.netlify.app/courses/fromspreadsheettor/)
 h. [Rstudio cloud registration](https://rstudio.cloud/content/3174865)
 
 i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudio-project-penguins.zip)
+
 
 
 **📢 Announcements!**
