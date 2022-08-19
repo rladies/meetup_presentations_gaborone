@@ -11,6 +11,17 @@ Session starting time: 13th August at 14:00pm SAST/CAT
 [Etherpad](https://etherpad.p2pu.org/p/ExcelToR_13_08_2022)
 
 ----------------------------------------------------------------------------------------------------------------------------------   
+**Workshop Resources**
+
+[Slides](https://docs.google.com/presentation/d/1QQefilm9_QL9Aq7niYDmYoPYKLLiDd_aUuo7NRrfUpA/edit?usp=sharing)
+
+[Full Workshop](https://yabellini.netlify.app/courses/fromspreadsheettor/)
+
+[Rstudio cloud registration](https://rstudio.cloud/content/3174865)
+
+[Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudio-project-penguins.zip)
+
+----------------------------------------------------------------------------------------------------------------------------------
 **Details**
 
 Why would you use R over Excel?
@@ -31,14 +42,6 @@ c. [RStudio Education for Beginners](https://education.rstudio.com/learn/beginne
 d. [Finding Your Way To R](https://education.rstudio.com/learn/)
 
 e. [What is R Programming Language? Introduction & Basics of R](https://www.guru99.com/r-programming-introduction-basics.html)
-
-f. [Slides](https://docs.google.com/presentation/d/1QQefilm9_QL9Aq7niYDmYoPYKLLiDd_aUuo7NRrfUpA/edit?usp=sharing)
-
-g. [Full Workshop](https://yabellini.netlify.app/courses/fromspreadsheettor/)
-
-h. [Rstudio cloud registration](https://rstudio.cloud/content/3174865)
-
-i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudio-project-penguins.zip)
 
 ----------------------------------------------------------------------------------------------------------------------------------  
 
