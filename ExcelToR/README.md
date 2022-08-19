@@ -1,4 +1,4 @@
-## R-Ladies Gaborone Meetup-  Excel To R _ 13th August 2022##
+## R-Ladies Gaborone Meetup-  Excel To R _ 13th August 2022
 
 Session Speaker: Yanina Beliini Saibene - https://twitter.com/yabellini
 
@@ -40,6 +40,7 @@ i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudi
 
 
 **📢 Announcements!**
+
 <- [Sentiment Analysis😀🤔☹️using R SAT, OCT 8 - 10:00 AM SAST/CAT](https://www.meetup.com/rladies-gaborone/events/286102816/)
 
  [Find your time](https://www.timeanddate.com/worldclock/fixedtime.html?msg=Sentiment+Analysis+using+R+%F0%9F%98%80%F0%9F%A4%94%E2%98%B9%EF%B8%8F&iso=20221008T12&ah=1)
@@ -60,6 +61,6 @@ i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudi
 <- [📆The Abdus Salam International Centre for Theoretical Physics(ICTP) Scientific Calendar](https://www.ictp.it/scientific-calendar.aspx)
 
 <- [R-Ladies Global Code of Conduct](https://rladies.org/code-of-conduct/#:~:text=R%2DLadies%20is%20dedicated%20to,lists%2C%20both%20online%20and%20offline)
-      [1] Reporting to  📧: reporting@rladies.org  /  gaborone@rladies.org
+          Reporting to  📧: reporting@rladies.org  /  gaborone@rladies.org
       
 <- [R for Beginners](https://education.rstudio.com/learn/)
