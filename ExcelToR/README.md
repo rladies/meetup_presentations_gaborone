@@ -1,9 +1,13 @@
 ## R-Ladies Gaborone Meetup-  Excel To R _ 13th August 2022##
 
-Session Speaker: Yanina Beliini Saibene - @yabellini
-Session Facilitators: Simisani Ndaba
+Session Speaker: Yanina Beliini Saibene - https://twitter.com/yabellini
+
+Session Facilitators: Simisani Ndaba - https://twitter.com/simisani10
+
 Session starting time: 13th August at 14:00pm SAST/CAT
+
 [Meetup link](https://www.meetup.com/rladies-gaborone/events/286104389/)
+
 [Etherpad](https://etherpad.p2pu.org/p/ExcelToR_13_08_2022)
 
 ----------------------------------------------------------------------------------------------------------------------------------   
@@ -15,13 +19,21 @@ Yanina Bellini Saibene & Paola Corrales in Workshop Education English gives us a
 
 **R Resources:** 
 a. [The R Project for Statistical Computing](https://www.r-project.org/)
+
 b. [R for Data Science](https://r4ds.had.co.nz/)
+
 c. [RStudio Education for Beginners](https://education.rstudio.com/learn/beginner/)
+
 d. [Finding Your Way To R](https://education.rstudio.com/learn/)
+
 e. [What is R Programming Language? Introduction & Basics of R](https://www.guru99.com/r-programming-introduction-basics.html)
+
 f. [Slides](https://docs.google.com/presentation/d/1QQefilm9_QL9Aq7niYDmYoPYKLLiDd_aUuo7NRrfUpA/edit?usp=sharing)
+
 g. [Full Workshop](https://yabellini.netlify.app/courses/fromspreadsheettor/)
-h. [Rstudio cloud](https://rstudio.cloud/content/3174865)
+
+h. [Rstudio cloud registration](https://rstudio.cloud/content/3174865)
+
 i. [Workshop Dataset file](https://yabellini.github.io/fromSpreadSheetToR/rstudio-project-penguins.zip)
 
 
