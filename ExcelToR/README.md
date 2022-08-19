@@ -12,6 +12,7 @@ Session starting time: 13th August at 14:00pm SAST/CAT
 
 ----------------------------------------------------------------------------------------------------------------------------------   
 **Details**
+
 Why would you use R over Excel?
 R and Excel are beneficial in different ways. Excel starts off easier to learn and is frequently cited as the go-to program for reporting, thanks to its speed and efficiency. R is designed to handle larger data sets, to be reproducible, and to create more detailed visualizations.
 
@@ -20,6 +21,7 @@ Yanina Bellini Saibene & Paola Corrales in Workshop Education English gives us a
 ----------------------------------------------------------------------------------------------------------------------------------  
 
 **R Resources:** 
+
 a. [The R Project for Statistical Computing](https://www.r-project.org/)
 
 b. [R for Data Science](https://r4ds.had.co.nz/)
