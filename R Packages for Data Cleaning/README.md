@@ -1,3 +1,6 @@
+
+![2 Twitter_poster](https://github.com/rladies/meetup_presentations_gaborone/assets/53818579/aea3d68b-a200-4c2a-95f2-09958ef99b98)
+
 # R Packages for Data Cleaning
 
 🗓 25-01-2022
