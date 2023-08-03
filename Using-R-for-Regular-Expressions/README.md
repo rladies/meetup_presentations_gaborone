@@ -1,3 +1,6 @@
+
+![Screenshot_20220329-094729_Meetup](https://github.com/rladies/meetup_presentations_gaborone/assets/53818579/e0cee842-8fcf-4616-a737-4d95b8c4706a)
+
 # Using R for Regular Expressions
 
 🗓 2022-04-09
