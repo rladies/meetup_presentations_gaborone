@@ -20,5 +20,5 @@ Our guest speaker is Pavitra Chakravarty (Data Engineer) and will guide us throu
 
 Additional material:
 
-- [Regex quiz](https://regexcrossword.com/puzzlebuilder)
 - [Regex in Python](https://codata.org/initiatives/data-skills/codata-connect/webinar-series-research-skills-enhancement/webinar-9-processing-textual-data-with-python/)
+- [Regex quiz](https://regexcrossword.com/puzzlebuilder)
