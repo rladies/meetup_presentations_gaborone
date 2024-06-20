@@ -1,9 +1,7 @@
 
 # Meetup_presentations_gaborone
 
-
-![rladies_cologne_logo](https://github.com/rladies/meetup_presentations_gaborone/assets/53818579/b16bcd32-f6c7-40fe-b3ce-40db87a9731a)
-
+![RLadiesGaboroneOldLogo](https://github.com/rladies/meetup_presentations_gaborone/assets/53818579/4b2d0386-2421-4080-aa6b-233b22750eba)
 
 Meetup presentations and material from R-Ladies Gaborone, Botswana
 
